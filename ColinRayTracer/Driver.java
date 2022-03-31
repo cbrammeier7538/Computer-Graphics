@@ -16,12 +16,12 @@ public class Driver
         BufferedImage buffer = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
 
-        for(int i = 0; i < height; i++)
+        for(int i = 0; i < width; i++)
         {
-            for(int j = 0; j < width; j++)
+            for(int j = 0; j < height; j++)
             {
                 //render pixels.
-                buffer.setRGB(i,j,500);
+                buffer.setRGB(i,j,1120);
             }
         }
 
