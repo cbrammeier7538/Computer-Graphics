@@ -12,7 +12,7 @@ public class Plane extends GeoObject
     public double hit(Ray ray)
     {
         double t = point.sub(ray.origin).dot(normal)/ray.direction.dot(normal);
-        if(t > 10E-9) {
+        if(t > 0.0000000001) {
             return t;
         } else {
             return 0.0;
