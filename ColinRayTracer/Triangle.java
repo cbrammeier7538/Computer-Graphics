@@ -1,51 +1,62 @@
-public class Triangle implements Geometry
+import javax.lang.model.util.ElementScanner14;
+
+public class Triangle extends GeoObject
 {
-    public Vector[] threePoints = new Vector[3];
-
-    public Triangle(Vector[] threePoints)
+    public Point One;
+    public Point Two;
+    public Point Three;
+    public Triangle(Point One, Point Two, Point Three)
     {
-    for(int i = 0; i < 3; i++)
+        this.One = One;
+        this.Two = Two;
+        this.Three = Three;
+    }
+    public Point get(int index)
     {
-        this.threePoints[i] = threePoints[i];
+        if(index == 1)
+        {
+            return this.One;
+        }
+        else if(index == 2)
+        {
+            return this.Two;
+        }
+        else if(index == 3)
+        {
+            return this.Three;
+        }
+        else
+        {
+            return this.One;
+        }
     }
-    }
-    public Triangle(Vector one, Vector two, Vector three)
+    public Point getFirstPoint()
     {
-        this.threePoints[0] = one;
-        this.threePoints[1] = two;
-        this.threePoints[2] = three;
+        return this.One;
     }
-    public Vector get(int index)
+    public Point getSecondPoint()
     {
-        return this.threePoints[index];
+        return this.Two;
     }
-    public Vector getFirstPoint()
+    public Point getThirdPoint()
     {
-        return this.threePoints[0];
+        return this.Three;
     }
-    public Vector getSecondPoint()
+    public void setFirstPoint(Point one)
     {
-        return this.threePoints[1];
+        this.One = one;
     }
-    public Vector getThirdPoint()
+    public void setSecondPoint(Point two)
     {
-        return this.threePoints[2];
+        this.Two = two;
     }
-    public void setFirstPoint(Vector one)
+    public void setThirdPoint(Point three)
     {
-        this.threePoints[0] = one;
+        this.Three = three;
     }
-    public void setSecondPoint(Vector two)
-    {
-        this.threePoints[1] = two;
-    }
-    public void setThirdPoint(Vector three)
-    {
-        this.threePoints[2] = three;
-    }
-
+/*
     @Override
-    public TAndNormal intersect(Ray ray) 
+    public double hit(Ray ray)
     {
         Plane plane = new Plane(threePoints);
         TAndNormal planeTAndNormal = plane.intersect(ray);
@@ -65,6 +76,7 @@ public class Triangle implements Geometry
         {
             return planeTAndNormal;
         }
-        return new TAndNormal(-1, null);
+        
     }
+    */
 }

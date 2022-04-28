@@ -4,7 +4,6 @@ public class Sphere extends GeoObject
 {
     public Point center;
     public double radius;
-    public Color color;
 
     public Sphere(Point center, double radius, Color color)
     {
