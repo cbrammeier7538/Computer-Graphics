@@ -2,7 +2,6 @@ public class Plane extends GeoObject
 {
     Point point;
     Normal normal;
-    Color color;
     public Plane(Point point, Normal normal, Color color)
     {
         this.point = new Point(point);

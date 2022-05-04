@@ -2,19 +2,42 @@ public class Tracer
 {
     public void trace(int x, int y)
     {
-        Ray ray = new Ray(new Point(1.0*(x-Driver.world.viewPlane.width/2+.5), 1.0*(y-Driver.world.viewPlane.height/2+.5), 100), new Vector(0.0, 0.0, -1.0));
-        double min = Double.MAX_VALUE;
-        Color color = Driver.world.Background;
+        Color color = new Color(0.0F, 0.0F, 0.0F);
+        boolean hit = false;
 
-        for(int i = 0; i < Driver.world.objects.size(); i++)
+        for(int ro = 0; ro < Driver.sampler.samples; ro++)
         {
-            double tem = Driver.world.objects.get(i).hit(ray);
-            if(tem != 0.0 && tem < min)
+            for(int co = 0; co < Driver.sampler.samples; co++)
             {
-                color = Driver.world.objects.get(i).color;
-                min = tem;
+                Point2D point = Driver.sampler.sample(ro, co, x, y);
+                Ray ray = Driver.projection.createRay(point);
+
+                double min = Double.MAX_VALUE;
+                Color temColor = Driver.world.Background;
+
+                for(int i = 0; i < Driver.world.objects.size(); i++)
+                {
+                    double temp = Driver.world.objects.get(i).hit(ray);
+
+                    if(temp != 0.0 && temp < min)
+                    {
+                        min = temp;
+                        hit = true;
+                        temColor = Driver.world.objects.get(i).color;
+                    }
+                }
+                color.add(temColor);
             }
-        Driver.image.buffer.setRGB(x,Driver.world.viewPlane.height-y-1,color.toInteger());
+        }
+        color.divide(Driver.sampler.samples*Driver.sampler.samples);
+
+        if(hit)
+        {
+            Driver.image.buffer.setRGB(x,Driver.world.viewPlane.height-y-1,color.toInteger());
+        }
+        else
+        {
+            Driver.image.buffer.setRGB(x,Driver.world.viewPlane.height-y-1, Driver.world.Background.toInteger());
         }
     }
 }
