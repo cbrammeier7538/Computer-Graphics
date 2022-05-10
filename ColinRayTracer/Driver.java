@@ -14,7 +14,7 @@ public class Driver
         image = new Image("Image.png");
         tracer = new Tracer();
         sampler = new RegSample(8);
-        projection = new Orthographic();
+        projection = new Perspective(new Point(0.0, 0.0, 600), new Point(0.0,0.0,0.0), 90.0);
 
         for(int i = 0; i < world.viewPlane.height; i++)
         {

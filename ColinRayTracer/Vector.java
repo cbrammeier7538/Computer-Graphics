@@ -26,6 +26,10 @@ public class Vector {
     {
         return new Vector(x-vector.x, y-vector.y, z-vector.z);
     }
+    public Vector mult(double scalar)
+    {
+        return new Vector(x*scalar, y*scalar, z*scalar);
+    }
     public double dot(Vector vector)
     {
         return x*vector.x + y*vector.y + z*vector.z;

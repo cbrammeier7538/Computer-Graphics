@@ -26,6 +26,12 @@ public class Point {
     {
         return new Point(x-point.x, y-point.y, z-point.z);
     }
+
+    public Vector sub_vec(Point point)
+    {
+        return new Vector(x-point.x, y-point.y, z-point.z);
+    }
+    }
     public double dot(Point point)
     {
         return x*point.x + y*point.y + z*point.z;

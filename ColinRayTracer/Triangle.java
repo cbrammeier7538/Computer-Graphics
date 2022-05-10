@@ -2,63 +2,53 @@
 
 public class Triangle extends GeoObject
 {
-    public Point One;
-    public Point Two;
-    public Point Three;
-    public Triangle(Point One, Point Two, Point Three)
+    public Vector[] points = new Vector[3];
+    public Triangle(Vector[] points)
     {
-        this.One = One;
-        this.Two = Two;
-        this.Three = Three;
-    }
-    public Point get(int index)
-    {
-        if(index == 1)
+        for(int i = 0; i < 3; i++)
         {
-            return this.One;
-        }
-        else if(index == 2)
-        {
-            return this.Two;
-        }
-        else if(index == 3)
-        {
-            return this.Three;
-        }
-        else
-        {
-            return this.One;
+            this.points[i] = points[i];
         }
     }
-    public Point getFirstPoint()
+    public Triangle(Vector One, Vector Two, Vector Three)
     {
-        return this.One;
+        this.points[0] = One;
+        this.points[1] = Two;
+        this.points[2] = Three;
     }
-    public Point getSecondPoint()
+    public Vector get(int index)
     {
-        return this.Two;
+        return this.points[index];
     }
-    public Point getThirdPoint()
+    public Vector getFirstPoint()
     {
-        return this.Three;
+        return this.points[0];
     }
-    public void setFirstPoint(Point one)
+    public Vector getSecondPoint()
     {
-        this.One = one;
+        return this.points[1];
     }
-    public void setSecondPoint(Point two)
+    public Vector getThirdPoint()
     {
-        this.Two = two;
+        return this.points[2];
     }
-    public void setThirdPoint(Point three)
+    public void setFirstPoint(Vector one)
     {
-        this.Three = three;
+        this.points[0] = one;
     }
-/*
+    public void setSecondPoint(Vector two)
+    {
+        this.points[1] = two;
+    }
+    public void setThirdPoint(Vector three)
+    {
+        this.points[2] = three;
+    }
+
     @Override
     public double hit(Ray ray)
     {
-        Plane plane = new Plane(threePoints);
+        Plane plane = new Plane(points);
         TAndNormal planeTAndNormal = plane.intersect(ray);
 
         Vector collision = ray.origin.plus(ray.direction.scale(planeTAndNormal.t));
